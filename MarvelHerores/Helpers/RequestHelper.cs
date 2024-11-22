@@ -23,7 +23,7 @@ namespace MarvelHerores.Helpers
         private string GenerateMd5Sign()
         {
             var ts = TimeSpan.FromTicks(DateTime.Now.Ticks);
-            var dataToConvert = string.Concat(ts, _configuration["PrivateKey"], _configuration["PrivateKey"]);
+            var dataToConvert = string.Concat(ts, _configuration["PrivateKey"], _configuration["publicKey"]);
             var bytesToHash = Encoding.UTF8.GetBytes(dataToConvert);
             using var md5 = MD5.Create();
             var bytesHasheds = md5.ComputeHash(bytesToHash);

@@ -2,7 +2,7 @@
 {
     public class Hero
     {
-        public int code { get; set; }
+        public int? code { get; set; }
         public string status { get; set; }
         public string copyright { get; set; }
         public string attributionText { get; set; }
@@ -13,10 +13,10 @@
 
     public class Data
     {
-        public int offset { get; set; }
-        public int limit { get; set; }
-        public int total { get; set; }
-        public int count { get; set; }
+        public int? offset { get; set; }
+        public int? limit { get; set; }
+        public int? total { get; set; }
+        public int? count { get; set; }
         public Character[] results { get; set; }
     }
 
@@ -25,7 +25,7 @@
         public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public DateTime modified { get; set; }
+        //public DateTime? modified { get; set; }
         public Thumbnail thumbnail { get; set; }
         public string resourceURI { get; set; }
         public Comics comics { get; set; }
@@ -46,7 +46,7 @@
         public int available { get; set; }
         public string collectionURI { get; set; }
         public ComicSummary[] items { get; set; }
-        public int returned { get; set; }
+        public int? returned { get; set; }
     }
 
     public class ComicSummary
@@ -60,7 +60,7 @@
         public int available { get; set; }
         public string collectionURI { get; set; }
         public SeriesSummary[] items { get; set; }
-        public int returned { get; set; }
+        public int? returned { get; set; }
     }
 
     public class SeriesSummary
@@ -74,7 +74,7 @@
         public int available { get; set; }
         public string collectionURI { get; set; }
         public Storiessummary[] items { get; set; }
-        public int returned { get; set; }
+        public int? returned { get; set; }
     }
 
     public class Storiessummary
@@ -89,7 +89,7 @@
         public int available { get; set; }
         public string collectionURI { get; set; }
         public EventsSummary[] items { get; set; }
-        public int returned { get; set; }
+        public int? returned { get; set; }
     }
 
     public class EventsSummary

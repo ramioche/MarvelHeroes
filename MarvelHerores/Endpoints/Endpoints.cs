@@ -8,7 +8,7 @@
         /// se debe hacer string.format para llenar los parametros:
         /// ts, apikey, hash, limit y ofset. en ese orden
         /// </summary>
-        public const string GetAllHeroes = "?ts={0}&apikey={1}&hash={2}&limit={3}&offset={4}";
+        public const string GetAllHeroes = "characters?ts={0}&apikey={1}&hash={2}&limit={3}&offset={4}";
 
         /// <summary>
         /// Obtener un heroe por su id.

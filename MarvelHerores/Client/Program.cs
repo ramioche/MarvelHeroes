@@ -17,7 +17,6 @@ namespace MarvelHerores
                 client.BaseAddress = new Uri(builder.Configuration["ApiBaseUrl"]!);
             });
             builder.Services.AddSingleton<IMarvelService<Hero>, HeroesService>();
-
             await builder.Build().RunAsync();
         }
     }

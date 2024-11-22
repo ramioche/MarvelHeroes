@@ -1,10 +1,37 @@
 ﻿@page "/heroes"
 @using MarvelHerores.Components;
 
+@inject IMarvelService<Hero> service;
+@inject IJSRuntime JS;
+@inject IConfiguration configuration;
+
 <PageTitle>Heroes</PageTitle>
 
 <PageHeader HeaderString="Heroes Page" />
 
+<CharacterCard Characters ="@_heroes.data.results" />
+
 @code {
-    
+
+    private Hero _heroes { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await GetHeroes();
+    }
+
+    private async Task GetHeroes()
+    {
+        try
+        {
+            var parameters = await JS.InvokeAsync<DTO.EmpointParametersDTO>("GetTs", new { privateKey = configuration["ApiPrivateKey"], publicKey = configuration["ApiPublicKey"] });
+            _heroes = await service.GetAllAsync(parameters.Ts, parameters.Pkey, parameters.Hash);
+            await JS.InvokeVoidAsync("console.log", _heroes);
+        }
+        catch (Exception e)
+        {
+
+            throw;
+        }
+    }
 }
