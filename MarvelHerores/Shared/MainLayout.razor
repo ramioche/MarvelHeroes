@@ -1,35 +1,9 @@
 ﻿@inherits LayoutComponentBase
-<script src="Js/CryptoJS.min.js"></script>
-<script>
-    async function GetTs(objKeys) {
-        try {
-            let ts = Date.now().toString()
-            let dataToEncript = ts + objKeys.privateKey + objKeys.publicKey
-            let hashHex = GetMD5(dataToEncript)
-
-            let obj = {
-                Ts: ts,
-                Pkey: objKeys.publicKey,
-                Hash: hashHex
-            }
-            console.log(obj)
-            return obj;
-        } catch (ex) {
-            console.log(ex)
-        }
-    }
-
-    function GetMD5(strinBase) {
-        let hash = CryptoJS.MD5(strinBase).toString();
-        return hash
-    }
-</script>
-
 <div class="page">
     <div class="sidebar">
         <NavMenu />
-    </div>
 
+    </div>
     <main>
         <div class="top-row px-4">
             <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>

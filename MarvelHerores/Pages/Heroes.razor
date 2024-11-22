@@ -8,29 +8,39 @@
 <PageTitle>Heroes</PageTitle>
 
 <PageHeader HeaderString="Heroes Page" />
-
-<CharacterCard Characters ="@_heroes.data.results" />
+@if (_heroes != null)
+{
+    <CharacterCard Characters="@_heroes.data.results" />
+}
+else
+{
+    <p>loading...</p>
+}
 
 @code {
 
-    private Hero _heroes { get; set; }
+    private Hero? _heroes { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        await GetHeroes();
+        await base.OnInitializedAsync();
+        if (_heroes is null)
+        {
+            _heroes = await GetHeroes();
+        }
     }
 
-    private async Task GetHeroes()
+    private async Task<Hero> GetHeroes()
     {
         try
         {
             var parameters = await JS.InvokeAsync<DTO.EmpointParametersDTO>("GetTs", new { privateKey = configuration["ApiPrivateKey"], publicKey = configuration["ApiPublicKey"] });
-            _heroes = await service.GetAllAsync(parameters.Ts, parameters.Pkey, parameters.Hash);
-            await JS.InvokeVoidAsync("console.log", _heroes);
+            var heroes = await service.GetAllAsync(parameters.Ts, parameters.Pkey, parameters.Hash);
+            await JS.InvokeVoidAsync("console.log", heroes);
+            return heroes;
         }
         catch (Exception e)
         {
-
             throw;
         }
     }
