@@ -10,7 +10,7 @@
 <PageHeader HeaderString="Heroes Page" />
 @if (_heroes != null)
 {
-    <CharacterCard Characters="@_heroes.data.results" />
+    <CharacterCard Characters="@_heroes.data.results.ToList()" />
 }
 else
 {
